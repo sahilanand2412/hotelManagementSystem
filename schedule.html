@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	
+</head>
+<body>
+    <div class="position-fixed top-0 left-0 w-100 h-100" style="background-image: url('images/room2.jpg'); background-size: cover; background-position: center;background-attachment:fixed; filter: blur(1px);"></div>
+   
+    <div class="container mt-5">
+        <div class="card mx-auto" style="width: 380px; background-color: rgba(255, 255, 255, 0.8);">
+            <div class="card-body">
+                <h2 class="card-title text-center">Booking</h2>
+                <form id="booking-form" class="form" onsubmit="return validateBookingForm()">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" class="form-control" required>
+                        <span class="error text-danger" id="age-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select id="type" name="type" class="form-control">
+                            <option value="Single room">Single room</option>
+                            <option value="Double room">Double room</option>
+                            <option value="Triple room">Triple room</option>
+                            <option value="Quad room">Quad room</option>
+							<option value="Queen room">Queen room</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Check in:</label>
+                        <input type="date" id="date" name="date" class="form-control" required>
+                        <span class="error text-danger" id="date-error"></span>
+                    </div>
+		    <div class="form-group">
+                        <label for="date">Check out:</label>
+                        <input type="date" id="date1" name="date1" class="form-control" required>
+                        <span class="error text-danger" id="date-error"></span>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="readButton" class="btn btn-info mt-2" onclick="readLabels()">Read Labels</button>
+                        <a href="home_page.html" class="btn btn-secondary mt-2">Homepage</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateBookingForm() 
+		{
+			const name = document.getElementById("name").value;
+			const age = document.getElementById("age").value;
+			const Type = document.getElementById("type").value;
+			const date = new Date(document.getElementById("date").value);
+			const currentDate = new Date(); 
+			const checkOutDate = new Date(document.getElementById("date1").value);
+			const currentDate1 = new Date(); 
+
+			const ageError = document.getElementById("age-error");
+			const dateError = document.getElementById("date-error");
+
+			ageError.textContent = "";
+			dateError.textContent = "";
+
+			if (!name || !age || !Type || !date) {
+				alert("Please fill in all required fields.");
+				return false;
+			}
+
+			if (age <= 0 || age >= 100)
+			{
+				ageError.textContent = "Age must be between 1 and 99.";
+				return false;
+			}
+
+			if (date <= currentDate)
+			{
+				dateError.textContent = "Booking date must be in the future.";
+				return false;
+			}
+			if (checkOutDate <= currentDate1)
+			{
+				dateError.textContent = "Check-out date must be in the future.";
+				return false;
+			}
+
+			if (checkOutDate <= date)
+			{
+				dateError.textContent = "Check-out date must be after the check-in date.";
+				return false;
+			}	
+		}
+        function readLabels()
+		{
+            const labels = document.querySelectorAll('label');
+            const labelNames = Array.from(labels).map(label => label.textContent);
+            const textToRead = labelNames.join('. ');
+            
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            synth.speak(utterance);
+        }
+    </script>
+</body>
+</html>

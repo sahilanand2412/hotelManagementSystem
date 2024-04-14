@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Feedback form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+	<script>
+		function myfeed()
+		{
+			alert("Thank you for your feedback");
+		}
+	</script>
+</head>
+<body>
+    <div class="contact-title">
+        <h1>FEEDBACK</h1>
+        <h2>SHARE YOUR FEEDBACK WITH US!!!!!!</h2>
+</div>
+<div class="container">
+    <div class="card bg-light">
+        <div class="card-body">
+            <div class="contact-form">
+                <form >
+					<label for="Name" class="lb" style="display:none;">Name</label>
+                    <input name="name" type="text" class="form-control"  placeholder="Name" onfocus="readLabel(this)" required><br>
+					<label for="Email" class="lb" style="display:none;">Email</label>
+                    <input name="email" type="email" class="form-control" placeholder="Email" onfocus="readLabel(this)" onsubmit="validateForm(event)" required><br>
+					<label for="Feedback" class="lb" style="display:none;">Feedback</label>
+                    <input name="feed" type="text" class="form-control" placeholder="Feedback" onfocus="readLabel(this)" onfocus="validateEmail()" required><br>
+                    <label style="color: white;" >PLEASE RATE YOUR OVERALL EXPERIENCE!!</label>
+                    <div class="container">
+                        <div class="star-widget" >
+                            <div class="star-widget">
+								<input type="radio" name="rate" id="rate-5">
+								<label for="rate-5" class="fas fa-star"></label>
+								<input type="radio" name="rate" id="rate-4">
+								<label for="rate-4" class="fas fa-star"></label>
+								<input type="radio" name="rate" id="rate-3">
+								<label for="rate-3" class="fas fa-star"></label>
+								<input type="radio" name="rate" id="rate-2">
+								<label for="rate-2" class="fas fa-star"></label>
+								<input type="radio" name="rate" id="rate-1">
+								<label for="rate-1" class="fas fa-star"></label>
+							</div>
+                        </div>
+                    </div>
+                    <button class="button" onclick="myfeed()">Give Feedback!</button>
+					<button id="readButton" class="button" onclick="readLabels()">Read Labels</button>
+                    <button class="button" onclick="window.location.href = 'home_page.html';">Home Page</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	function validateForm(event) 
+	{
+            const emailInput = document.querySelector('input[name="email"]');
+            const emailValue = emailInput.value;
+
+            if (!emailInput.checkValidity())
+			{
+                emailInput.placeholder = "Please enter a valid email address";
+                event.preventDefault();
+            }
+			else 
+			{
+                alert("Thank you for your feedback");
+            }
+	}
+	function readLabel(inputElement) {
+		const label = inputElement.previousElementSibling;
+		const synth = window.speechSynthesis;
+		const utterance = new SpeechSynthesisUtterance(label.textContent);
+		synth.speak(utterance);
+	}
+
+	function readLabels() {
+		const labels = document.querySelectorAll('label');
+		const labelNames = Array.from(labels).map(label => label.textContent);
+		const textToRead = labelNames.join('. ');
+		const synth = window.speechSynthesis;
+		const utterance = new SpeechSynthesisUtterance(textToRead);
+		synth.speak(utterance);
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,199 @@
+body 
+{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	background: linear-gradient(rgba(0, 0, 50, 0.5),rgba(0, 0, 50, 0.5)),url(images/p.gif);
+	background-size: cover;
+	background-position: center;
+	font-family: sans-serif;
+}
+::placeholder 
+{ 
+	color: #fff;	
+}
+:-ms-input-placeholder 
+{ 
+	color: #fff;	
+  }
+  
+  ::-ms-input-placeholder 
+  { 
+	color: #fff;	
+  }
+.contact-title 
+{
+	margin-top: 100px;
+	color: #fff;
+	text-transform: uppercase;
+	transition: all 4s ease-in-out;
+}
+
+.contact-title h1 
+{
+	font-size: 32px;
+	line-height: 10px;
+}
+
+.contact-title h2 
+{
+	font-size: 16px;
+
+}
+form 
+{
+	margin-top: 50px;
+	transition: all 4s ease-in-out;
+}
+
+.form-control 
+{
+	width: 600px;
+	background: transparent;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid gray;
+	color: #fff;
+	font-size: 18px;
+	margin-bottom: 16px;
+}
+
+input 
+{
+	height: 45px;
+}
+.container
+	{
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+			
+	}
+	.container .post
+	{
+		display: none;
+	}
+	.container .edit
+	{
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		font-size: 16px;
+		color: #666;
+		font-weight: 500;
+		cursor: pointer;
+	}
+	.container .edit:hover
+	{
+		text-decoration: underline;
+	}
+	.container .star-widget input
+	{
+		display: none;
+	}
+	.star-widget label
+	{
+		font-size: 40px;
+		color: #444;
+		padding: 10px;
+		float: right;
+		transition: all 0.2s ease;
+	}
+	input:not(:checked) ~ label:hover,
+	input:not(:checked) ~ label:hover ~ label
+	{
+		color: #fd4;
+	}
+	input:checked ~ label
+	{
+		color: #fd4;
+	}
+	input#rate-5:checked ~ label
+	{
+		color: #fe7;
+		text-shadow: 0 0 20px #952;
+	}
+	.button
+	{
+		height:50px;
+		width:200px;
+		background-color: white;
+		color:black;
+		box-shadow: #444;
+		font-size:20px;
+		font-family: cursive;
+	}
+	.lb
+	{
+		font-size:20px;
+		color:white;
+		font-family: cursive;
+	}
+	@media screen and (min-width: 992px) and (max-width: 1906)
+	{
+		.contact-form
+		{
+			display: flex;
+			flex-direction: column;
+		}
+		input[type=text]
+		{
+			width:100%;
+		}
+		input[type=email]
+		{
+			width:100%;
+		}
+		textarea
+		{
+			width: 10%;
+			height: 30px;
+		}
+	}
+	@media screen and (min-width: 768px) and (max-width: 991px)
+	{
+		.contact-form
+		{
+			display: flex;
+			flex-direction: column;
+			width: 75%;
+		}
+		input[type=text]
+		{
+			width:75%;
+		}
+		input[type=email]
+		{
+			width:75%;
+		}
+		.button
+		{
+			display: flex;
+			flex-direction: column;
+		}
+
+	@media screen and (min-width:372px) and (max-width: 767px)
+	{
+		.contact-form
+		{
+			display: flex;
+			flex-direction: column;
+			width:25%;
+		}
+		input[type=text]
+		{
+			width:25%;
+		}
+		input[type=email]
+		{
+			width:25%;
+		}
+		.button
+		{
+			display: flex;
+			flex-direction: column;
+			width:100px;
+			font-size 10;
+		}
+	}
